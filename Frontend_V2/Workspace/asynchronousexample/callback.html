@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Check the browser console (usually F12 -> Console tab) to see the script output.</p>
+
+    <script>
+        function download(url, callback) {
+            setTimeout(() => {
+                // In a real application, you would use Fetch API or XMLHttpRequest
+                // to download the resource. This is just a simulation.
+                console.log(`Downloading ${url} ...`);
+                
+                // process the picture once it is completed
+                callback(url);
+            }, 1000);
+        }
+
+        function process(picture) {
+            console.log(`Processing ${picture}`);
+        }
+
+        let url = 'https://images.pexels.com/photos/133472/pexels-photo-133472.jpeg?auto=compress&cs=tinysrgb&w=600';
+        download(url, process);
+    </script>
+</body>
+</html>

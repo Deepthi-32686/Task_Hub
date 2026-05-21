@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "name": "lab-exam-2-login-form",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "vite",
+  "outputDirectory": "dist"
+}

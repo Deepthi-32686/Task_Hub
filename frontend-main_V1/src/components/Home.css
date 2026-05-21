@@ -1,0 +1,69 @@
+.home {
+    margin: 0;
+    width: 100%;
+    height: 100vh; /* IMPORTANT */
+    display: grid;
+    grid-template-rows: 60px 1fr 25px; /* fixed layout */
+}
+
+/* HEADER */
+.home .home-header {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-bottom: 2px solid red;
+}
+
+/* LOGO */
+.home .home-header img {
+    width: 120px;
+    height: 45px;
+}
+
+/* RIGHT SIDE (name + logout) */
+.home .home-header .info {
+    margin-left: auto; /* FIX */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* LOGOUT ICON */
+.home .home-header .info img {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}
+
+.home .home-header .info img:hover {
+    opacity: 0.8;
+}
+
+/* WORKSPACE */
+.home .home-workspace {
+    display: grid;
+    grid-template-columns: 200px 1fr; /* FIX */
+    height: 100%;
+}
+
+/* SIDEBAR */
+.home .home-workspace .home-menus {
+    background: var(--primary-blue);
+    color: white;
+    padding: 10px;
+}
+
+/* CONTENT */
+.home .home-workspace .home-content {
+    background: var(--background-secondary);
+    padding: 10px;
+}
+
+/* FOOTER */
+.home .home-footer {
+    font-size: 8pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid var(--border-color);
+}

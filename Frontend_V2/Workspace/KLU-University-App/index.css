@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+}
+
+/* HEADER – 20% */
+.header {
+  height: 20%;
+  background-color: #8b0000;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* MENU – 10% */
+.menu {
+  height: 10%;
+  background-color: #333;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* BODY – 50% */
+.body {
+  height: 50%;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+/* FOOTER – 20% */
+.footer {
+  height: 20%;
+  background-color: #222;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

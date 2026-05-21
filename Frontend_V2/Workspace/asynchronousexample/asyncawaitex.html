@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Async Await Demo</title>
+</head>
+<body>
+
+<script>
+function download(url) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            document.write(`Downloading ${url} ... <br>`);
+            // simulate success
+            resolve(url);
+        }, 1000);
+    });
+}
+
+function process(url) {
+    document.write(`Processing file from ${url} <br>`);
+}
+
+async function main() {
+    try {
+        let url = "https://images.pexels.com/photos/133472/pexels-photo-133472.jpeg";
+
+        const downloadedPicture = await download(url);
+
+        process(downloadedPicture);
+
+    } catch (error) {
+        document.write(`Error: ${error} <br>`);
+    } finally {
+        document.write("Operation complete.");
+    }
+}
+
+main();
+</script>
+
+</body>
+</html>

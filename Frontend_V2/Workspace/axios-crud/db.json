@@ -1,0 +1,15 @@
+{
+  "students": [
+    {
+      "id": "1",
+      "name": "Ravi",
+      "course": "CSE"
+    },
+    {
+      "id": "4ccf",
+      "name": "deepu",
+      "course": "CSE"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
