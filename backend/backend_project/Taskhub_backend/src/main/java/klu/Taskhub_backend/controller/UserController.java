@@ -2,7 +2,6 @@ package klu.Taskhub_backend.controller;
 
 import java.util.Map;
 
-import org.apache.catalina.User;	
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import klu.Taskhub_backend.model.Users;
 import klu.Taskhub_backend.service.UserService;
 
@@ -21,35 +19,43 @@ import klu.Taskhub_backend.service.UserService;
 @RequestMapping("/user")
 @CrossOrigin
 public class UserController {
-	
- 
-	@Autowired
-	UserService US;
-	
-	@PostMapping("/signup")
-	public Object signup(@RequestBody Users U) {
-		return US.signup(U);
-	
-}
-	@PostMapping("/signin")
-	public Object signin(@RequestBody Map<String ,Object> data) {
-		return US.signin(data);
-		
-	}
-	@GetMapping("/uinfo")
-	public Object uinfo(@RequestHeader("Token") String token) {
-		return US.uinfo(token);
-	}
-	
-	@GetMapping("/profile")
-	public Object getProfile(@RequestHeader("Token") String token) {
-		return US.getProfile(token);
-		
-	}
-	
 
-	@GetMapping("/getallusers/{PAGE}/{SIZE}")
-	  public Object getAllUsers(@PathVariable("PAGE") int page, @PathVariable("SIZE") int size, @RequestHeader String Token) {
-	    return US.getAllUsers(page, size, Token);
-	  }
+    @Autowired
+    UserService US;
+
+    @PostMapping("/signup")
+    public Object signup(@RequestBody Users U) {
+        return US.signup(U);
+    }
+
+    @PostMapping("/signin")
+    public Object signin(@RequestBody Map<String ,Object> data) {
+        return US.signin(data);
+    }
+
+    @PostMapping("/saveuser")
+    public Object saveUser(@RequestBody Users U,
+                           @RequestHeader("Token") String Token) {
+
+        return US.saveUser(U, Token);
+    }
+
+    @GetMapping("/uinfo")
+    public Object uinfo(@RequestHeader("Token") String token) {
+        return US.uinfo(token);
+    }
+
+    @GetMapping("/profile")
+    public Object getProfile(@RequestHeader("Token") String token) {
+        return US.getProfile(token);
+    }
+
+    @GetMapping("/getallusers/{PAGE}/{SIZE}")
+    public Object getAllUsers(
+            @PathVariable("PAGE") int page,
+            @PathVariable("SIZE") int size,
+            @RequestHeader String Token) {
+
+        return US.getAllUsers(page, size, Token);
+    }
 }

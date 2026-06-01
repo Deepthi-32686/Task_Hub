@@ -11,7 +11,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import klu.Taskhub_backend.model.Roles;
 import klu.Taskhub_backend.model.Users;
+import klu.Taskhub_backend.repo.RolesRepository;
 import klu.Taskhub_backend.repo.UserRepository;
 
 @Service
@@ -21,9 +23,11 @@ public class UserService {
     UserRepository UR;
 
     @Autowired
+    RolesRepository RR;
+
+    @Autowired
     JwtService Jwt;
 
-    
     // ================= SIGNUP =================
 
     public Object signup(Users U) {
@@ -59,7 +63,6 @@ public class UserService {
         return response;
     }
 
-    
     // ================= SIGNIN =================
 
     public Object signin(Map<String, Object> data) {
@@ -99,7 +102,6 @@ public class UserService {
         return response;
     }
 
-    
     // ================= USER INFO =================
 
     public Object uinfo(String token) {
@@ -131,7 +133,6 @@ public class UserService {
         return response;
     }
 
-    
     // ================= PROFILE =================
 
     public Object getProfile(String token) {
@@ -158,7 +159,6 @@ public class UserService {
         return response;
     }
 
-    
     // ================= GET ALL USERS =================
 
     public Object getAllUsers(int page, int size, String token) {
@@ -167,7 +167,6 @@ public class UserService {
 
         try {
 
-            // validate token
             Jwt.validateJWT(token);
 
             Pageable pageable = PageRequest.of(
@@ -178,14 +177,45 @@ public class UserService {
 
             Page<Users> users = UR.findAll(pageable);
 
+            List<Roles> roles = RR.findAll();
+
             response.put("code", 200);
             response.put("page", page);
             response.put("size", size);
             response.put("totalpages", users.getTotalPages());
-            response.put("totalrecords", users.getTotalElements());
             response.put("users", users.getContent());
+            response.put("roles", roles);
 
-        } catch (Exception e) {
+        } catch(Exception e) {
+
+            response.put("code", 500);
+            response.put("message", e.getMessage());
+        }
+
+        return response;
+    }
+
+    // ================= SAVE USER =================
+
+    public Object saveUser(Users U, String token) {
+
+        Map<String, Object> response = new HashMap<>();
+
+        try {
+
+            Jwt.validateJWT(token);
+
+            Object id = UR.checkByEmail(U.getEmail());
+
+            if(id != null)
+                throw new Exception("Email ID already registered");
+
+            UR.save(U);
+
+            response.put("code", 200);
+            response.put("message", "New User account created");
+
+        } catch(Exception e) {
 
             response.put("code", 500);
             response.put("message", e.getMessage());
